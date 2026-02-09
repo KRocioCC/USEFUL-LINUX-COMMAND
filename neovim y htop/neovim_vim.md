@@ -1,135 +1,230 @@
 # VIM y NEOVIM
+
 ## VIM
-![VIM logo ](https://www.redeszone.net/app/uploads-redeszone.net/2016/09/Vim-800x388.png)
+![VIM logo](https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vim/vim-original.svg)
 
-Para instalar vim utilizamos el siguiente comando
+Vim es un editor de texto altamente configurable y eficiente, diseñado para hacer la edición de texto muy rápida. Es modal, lo que significa que tiene diferentes modos para distintas tareas.
 
-`sudo apt-get install vim`
+### Instalación de Vim
 
-**Para abrir vim utilizamos el comando** 
+```bash
+sudo apt update
+sudo apt install vim
+```
 
-`vim`
+También puedes usar:
+```bash
+sudo apt-get install vim
+```
 
-***si queremos abrir un archivo con vim entramos al archivo de la siguiente forma 
-vim <nombre del archivo> 
-siempre y cuando se estemos en la ruta donde se encuentra el archivo 
-## En vim tenemos varios modos como:
+**Verificar la instalación:**
+```bash
+vim --version
+```
 
-### ***1.- Modo Lector***
- Es el primer modo en el cual nos encontraremos nos servirá solo para visualizar el documento que estamos editando los comandos que podemos utilizar son los siguientes:  
+### Abrir archivos con Vim
 
-* **h** nos desplazamos hacia la izquierda 
-* **j** nos desplazamos hacia abajo
-* **k** nos desplazamos hacia arriba abajo
-* **l** nos desplazamos hacia la derecha 
-(si escribimos primero un número seguido de la dirección a la que nos queremos dirigir (h,j,k,l) desplazar el indicador el numero indicado a la direccion que le iniquemos )  
-* **i** entramos en modo editor del archivo 
-* **ESC** Para volver al modo lector
-* **w** el indicador se desplaza al principio de la siguiente palabra
-* **e** el indicador se desplaza al final de la siguiente palabra
-* Si mi indicador está una palabra y pongo un **"*"** subrayara donde se encuentra esa palabra repetida 
-* **gg** me lleva al principio de todo el documento
-* **G** me lleva al final de todo el documento
-* **numero+G** me lleva al principio del numero de linea que indique
-% me muestra donde se abre o cierra un paréntesis, corchete o llave 
-f+<carácter> busca ese carácter en la fila
-
-
-*** Al entrar al archivo estaremos en modo lector, para poder desplazarnos en el archivo podemos utilizar las flechas pero vim nos da la facilidad de no mover las manos hacia las flechas entonces podemos utilizar las siguientes teclas en el modo lector
-
-### ***2.- Modo Inserción*** 
-Podemos acceder a este modo siempre y cuando estemos en el modo lector, podemos entrar a este modo tecleando la letra y esto nos permitirá entrar a escribir el documento donde el indicador se encuentre. Para salir del modo inserción tenemos que apretar la tecla esc
-
-### ***3.- Modo comando***
-Para entrar al modo comando necesitaremos escribir dos puntos “:” esto nos permitirá ejecutar algunos comandos como: 
-* :q sale del archivo, si no tenemos cambios sin guardar sale sin guardar.
-
-* :q!  sale del archivo descartando los cambios no guardados.
-
-* :w guarda los cambios del archivo, pero no sale de Vim para seguir editando el archivo.
-
-* :wq guarda los cambios y sale de Vim.
-
-### ***4.- Modo visual***
-
-Se utiliza para hacer selecciones de texto del archivo para entrar a este modo entramos con la tecla v
-## NEOVIM
-![VIM logo ](https://cdn.worldvectorlogo.com/logos/neovim.svg)
-
-Para instalar neovim utilizamos el siguiente comando 
-
-`sudo apt-get install neovim`
-
-En resumen si sabemos utilizar vim es practicamente lo mismo esto porque Neovim es un fork de Vim lo que tenemos que saber es que neovim es el mas actualizado y posee alguna caractericticas nuevas como:
-
-* Nuevo sistema de plugins que permite multitud de nuevos lenguajes: clojure, lisp, go, haskell, lua, javascript, perl, python, ruby y rust
-
-* Nuevas rutas de configuración. El archivo pasa de ~/.vimrc a ~/.config/nvim/init.vim, entre otros. Manteniendo una carpeta de usuario limpia
-
-### Administaradores de plugins en neovim
-
-Lo primero que debemos tener en cuenta es que los archivos que conforman un plugin deben estar en directorios especificos lo que usualmente se hacia en vim y aun se puede hacer en Neovim era pegar estos archivos en su respectivo directorio pero la dificultad viene al tratar de actualizar estos plugins. 
-
-Lo que hace Neovim para solucionar este problema es implementar los administradores de plugins que se encargan de mantener actualizados estos:
-
-algunos de los mas utilizados son:
-
-* pathogen 
-* vundle
-* dein
-* vim-plug 
-
-En este caso instalaremos el vim-plug 
-
-Para instalar vim-plug necesitaremos git y curl 
-una vez que tengamos git utilizamos el siguiente comando
-
-
-`curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
-
-Entramos a nuestro archivo 
-
-`nvim ~/.config/nvim/init.vim`
-
-Y agregamos lo siguiente 
+```bash
+vim                      # Abre Vim vacío
+vim archivo.txt          # Abre o crea un archivo
 
 ```
-" Directorio de plugins
+
+**Nota:** Al abrir Vim estarás en **Modo Normal** por defecto.
+
+## Modos de Vim
+
+Vim tiene 4 modos principales. Para cambiar entre ellos usa las teclas indicadas.
+
+### 1. Modo Normal (Normal Mode)
+
+Es el modo por defecto al abrir Vim. Se usa para navegar, copiar, pegar y ejecutar comandos.
+
+**Cómo llegar:** Presiona `ESC` desde cualquier modo.
+
+#### Navegación básica:
+* `h` - Izquierda
+* `j` - Abajo
+* `k` - Arriba
+* `l` - Derecha
+* `w` - Siguiente palabra (inicio)
+* `e` - Siguiente palabra (final)
+* `b` - Palabra anterior
+* `0` - Inicio de la línea
+* `$` - Final de la línea
+* `gg` - Inicio del documento
+* `G` - Final del documento
+
+
+**Cómo entrar desde Modo Normal:**
+* `i` - Insertar antes del cursor
+* `I` - Insertar al inicio de la línea
+* `a` - Insertar después del cursor (append)
+* `A` - Insertar al final de la línea
+* `o` - Crear nueva línea abajo y entrar a inserción
+* `O` - Crear nueva línea arriba y entrar a inserción
+
+**Cómo salir:** Presiona `ESC` para volver al Modo Normal.rsor
+* `A` - Insertar al final de la línea
+* `o` - Crear nueva línea abajo
+* `O` - Crear nueva línea arriba
+* `ESC` - Volver al modo normal
+
+Permite ejecutar comandos como guardar, salir, buscar y reemplazar.
+
+**Cómo entrar:** Escribe `:` desde el Modo Normal.
+
+#### Comandos esenciales:
+* `:q` - Salir (solo si no hay cambios sin guardar)
+* `:q!` - Salir sin guardar cambios (forzar salida)
+* `:w` - Guardar (write)
+* `:wq` o `:x` - Guardar y salir
+* `:w archivo.txt` - Guardar como
+* `:e archivo.txt` - Abrir otro archivo (edit)
+
+#### Configuración:
+* `:set number` - Mostrar números de línea
+* `:set nonumber` - Ocultar números de línea
+* `:syntax on` - Activar resaltado de sintaxis
+* `:syntax off` - Desactivar resaltado de sintaxis
+
+#### Búsqueda y reemplazo:
+* `:%s/viejo/nuevo/g` - Reemplacopiar, cortar o realizar operaciones.
+
+**Cómo entrar desde Modo Normal:**
+* `v` - Modo visual carácter por carácter
+* `V` - Modo visual línea por línea (selecciona líneas completas)
+* `Ctrl + v` - Modo visual en bloque (selección rectangular)
+
+**Operaciones en selección:**
+* `y` - Copiar (yank) la selección
+* `d` - Cortar (delete) la selección
+* `p` - Pegar después del cursor
+* `P` - Pegar antes del cursor
+
+**Cómo salir:** Presiona `ESC` para volver al Modo Normal.
+
+---
+
+## Comandos Útiles de Edición (Modo Normal)
+
+### Copiar, Cortar y Pegar:
+* `yy` - Copiar (yank) la línea completa
+* `dd` - Cortar (delete) la línea completa
+* `x` - Borrar el carácter bajo el cursor
+* `p` - Pegar después del cursor o línea
+* `P` - Pegar antes del cursor o línea
+* `número + dd` - Borrar número de líneas (ej: `3dd` borra 3 líneas)
+* `número + yy` - Copiar número de líneas (ej: `2yy` copia 2 líneas)
+
+### Deshacer y Rehacer:
+* `u` - Deshacer (undo) último cambio
+* `Ctrl + r` - Rehacer (redo)
+* `.` - Repetir último comando de edición
+
+### Búsqueda:
+* `/texto` - Buscar "texto" hacia adelante
+* `?texto` - Buscar "texto" hacia atrás
+* `n` - Ir al siguiente resultado
+* `N` - Ir al resultado anterior
+* `*` - Buscar la palabra bajo el cursor
+
+### Reemplazar:
+* `r + caracter` - Reemplazar el carácter bajo el cursor
+* `R` - Entrar en modo reemplazo (sobrescribe)
+* `cw` - Cambiar palabra (borra y entra en modo inserción)
+* `u` - Deshacer
+* `Ctrl + r` - Rehacer
+* `.` - Repetir último comando
+
+**Búsqueda:**
+* `/texto` - Buscar hacia adelante
+* `?texto` - Buscar hacia atrás
+* `n` - Siguiente resultado
+* `N` - Resultado anterior
+
+---
+
+## NEOVIM
+
+![Neovim logo](https://cdn.worldvectorlogo.com/logos/neovim.svg)
+
+Neovim es un fork moderno de Vim, compatible y más actualizado.
+
+Si ya sabes usar Vim, Neovim es prácticamente lo mismo. Lo importante es que Neovim es más moderno y trae nuevas características.
+
+**Características nuevas más importantes:**
+* **Nuevo sistema de plugins** que permite multitud de lenguajes: clojure, lisp, go, haskell, lua, javascript, perl, python, ruby y rust.
+* **Nuevas rutas de configuración** que mantienen una carpeta de usuario más limpia.
+
+### Instalación
+
+```bash
+sudo apt update
+sudo apt install neovim
+```
+
+También puedes usar:
+
+```bash
+sudo apt-get install neovim
+```
+
+Verificar:
+```bash
+nvim --version
+```
+
+### Rutas de configuración
+
+* Vim: `~/.vimrc`
+* Neovim: `~/.config/nvim/init.vim`
+* (Opcional) `~/.config/nvim/init.lua`
+
+### Administradores de plugins (resumen)
+
+Antes se copiaban los archivos de plugins en directorios específicos de forma manual; eso dificultaba actualizarlos.
+Neovim soluciona esto con administradores de plugins que se encargan de mantenerlos al día.
+
+Algunos de los más usados:
+* **pathogen**
+* **vundle**
+* **dein**
+* **vim-plug**
+
+### Plugins (vim-plug, básico)
+
+Para instalar **vim-plug** necesitas `git` y `curl`. Luego ejecuta:
+```bash
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+Configurar:
+```bash
+nvim ~/.config/nvim/init.vim
+```
+
+```vim
 call plug#begin('~/.local/share/nvim/plugged')
-
-" Aquí irán los plugins a instalar
-
+Plug 'iCyMind/NeoSolarized'
 call plug#end()
 
-" Luego de esta línea puedes agregar tus configuraciones y mappings
-
+set termguicolors
+set background=dark
+colorscheme NeoSolarized
 ```
 
-Por ejemplo para instalar un pluginde tema para Neovim podemos utilizar el siguiente plugin
-
-*NeoSolarized*
-copiamos lo siguiente en nuestro archivo init.vim donde indicamos colocar los plugins
-
+Instalar plugins (en Neovim):
+```vim
+:PlugInstall
 ```
-Plug 'iCyMind/NeoSolarized'
-set termguicolors  " Activa true colors en la terminal
-set background=dark  " Fondo del tema: dark/light
-colorscheme NeoSolarized  " Activa tema NeoSolarized
+
+Recargar configuración (opcional):
+```vim
+:so ~/.config/nvim/init.vim
 ```
-luego ejecutamos con el modo comando
 
-```
-:so ~/.config/nvim/init.vim 
-```
-luego 
-```
-:PlugInstall 
-```
-y cerramos la instalacion con **q**
+Cierra la instalación con `q`.
 
-si vemos nuestro editor nvim tendra la siguiente temas que podemos revisarlos en: 
-[Solarized](https://ethanschoonover.com/solarized/ "Título opcional del enlace").
-
-
-
-
+Si quieres revisar más sobre el tema: [Solarized](https://ethanschoonover.com/solarized/).
