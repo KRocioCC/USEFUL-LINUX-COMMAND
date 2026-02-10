@@ -15,9 +15,7 @@
 7. [BÚSQUEDA Y FILTRADO](#búsqueda-y-filtrado)
 8. [EDICIÓN DE ARCHIVOS](#edición-de-archivos)
 9. [RED Y CONECTIVIDAD](#red-y-conectividad)
-10. [PROCESOS Y SERVICIOS](#procesos-y-servicios)
-11. [GESTIÓN DE ALMACENAMIENTO](#gestión-de-almacenamiento)
-12. [EXTENSIONES GNOME](#extensiones-gnome)
+10. [EXTENSIONES GNOME](#extensiones-gnome)
 
 ---
 
@@ -51,27 +49,12 @@ La actualización del sistema es fundamental para la seguridad.
 | `sudo apt full-upgrade` | Actualiza eliminando paquetes obsoletos si es necesario | Más agresivo que upgrade |
 
 
-**Secuencia recomendada de actualización:**
-```bash
-# Paso 1: Actualizar lista de paquetes
-sudo apt update
-
-# Paso 2: Actualizar paquetes
-sudo apt upgrade
-
-# Paso 3: Limpiar paquetes innecesarios
-sudo apt autoremove
-
-# Paso 4: Limpiar caché
-sudo apt autoclean
-```
 
 ### Comandos de Limpieza
 
 | Comando | Descripción |
 |---------|-------------|
 | `sudo apt autoremove` | Elimina paquetes instalados automáticamente que ya no son necesarios |
-| `sudo apt autoclean` | Elimina archivos .deb en caché más antiguos que los instalados |
 | `sudo apt clean` | Borra completamente el caché de paquetes |
 
 
@@ -123,9 +106,6 @@ ls -l
 
 # Listar todos (incluyendo ocultos)
 ls -a
-
-# Listar con tamaño legible
-ls -lh
 
 # Mostrar todo con detalles y tamaño
 ls -lahS
@@ -234,27 +214,12 @@ who
 
 ```
 
----
-
-## BÚSQUEDA Y FILTRADO
-
-### Buscar Archivos
-
-```bash
-# Buscar por nombre
-find . -name "*.txt"
-
-# Buscar archivos modificados hace 7 días
-find . -mtime -7
-
-```
-
 ## EDICIÓN DE ARCHIVOS
 
 ### Editores de Texto
 
 ```bash
-# Editor nano (recomendado para principiantes)
+# Editor nano 
 nano archivo.txt
 
 # Editor vim
@@ -291,15 +256,6 @@ ip addr show
 # Ver interfaces de red
 ifconfig
 
-# Ver tabla de enrutamiento
-ip route show
-
-# Ver puertos en escucha
-ss -tulpn
-
-# Ver conexiones activas
-netstat -tulpn
-
 # Probar conectividad
 ping google.com
 
@@ -307,22 +263,6 @@ ping google.com
 ifconfig -a
 
 ```
-
-### SSH y Control Remoto
-
-```bash
-# Conectar por SSH
-ssh usuario@host
-
-# Conectar en puerto específico
-ssh -p 2222 usuario@host
-
-
-# Generar claves SSH
-ssh-keygen -t rsa -b 4096
-```
-
----
 
 
 ## TIPS DE PRODUCTIVIDAD
