@@ -1,188 +1,309 @@
-# ZSH y oh-my-zsh
+# ZSH y Oh-My-ZSH
 
-## zsh
+> Guía para instalar ZSH + Oh-My-ZSH con plugins y temas personalizados.
 
-**ZSH**, también llamado **Z shell**, es una versión extendida de **Bourne Shell** (**sh**), con muchas características nuevas y soporte para plugins y temas. Se basa en el mismo shell que **Bash**.
+---
 
-Algunas de sus ventajas principales son:
-- Eficiencia
-- Completado de tabulador mejorado
+## Tabla de Contenidos
+
+1. [ZSH](#zsh)
+2. [Oh-My-ZSH](#oh-my-zsh)
+3. [Plugins Disponibles](#plugins-disponibles)
+4. [Temas](#temas)
+
+---
+
+## ZSH
+
+**ZSH** (Z shell) es una versión mejorada de **Bash**, ofreciendo más funcionalidades y personalización.
+
+### Ventajas principales:
+- Mayor eficiencia y velocidad
+- Completado de tabulador mejorado (autocompletado inteligente)
 - Expansión de nombres de fichero mejorada
-- Manejo de arrays mejorado
+- Manejo de arrays más potente
 - Totalmente personalizable
 
-### Instalar Zsh
-Para instalarlo solo debe ejecutar el siguiente comando:
+### Instalación
 
-`sudo apt install zsh`
+```bash
+sudo apt update
+sudo apt install zsh
+```
 
-## Oh-my-zsh
-**Oh my zsh** es un distribuidor y administrador de plugins y configuración para **ZSH**, es fácil de instalar y con más de 150 módulos para usar.
+También puedes usar:
+```bash
+sudo apt-get install zsh
+```
 
-### Instalar oh-my-zsh
-Para poder instalarlo debe ejecutar el siguiente comando:
+**Verificar instalación:**
+```bash
+zsh --version
+```
 
-`sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"`
+**Verificar que estás usando ZSH:**
+```bash
+echo $SHELL
+# Debería mostrar: /usr/bin/zsh o /bin/zsh
+```
 
-### Plugins 
+**Ver tu shell actual:**
+```bash
+ps -p $$
+```
 
-####  <ins>Git Plugin</ins>
-Este plugin ya viene con **oh-my-zsh**. Proporciona una variedad de ***alias*** y algunas ***funciones*** útiles.
+---
 
-Para usarlo, agregue la palabra ***git*** a la matriz de plugins en el archivo **zshrc**.
+## Oh-My-ZSH
 
-`plugins=(git ...)`
+**Oh-My-ZSH** es un framework que facilita la instalación y gestión de plugins y temas para ZSH.
 
-##### Ejemplos de uso de alias
-Alias | Comando | Descripción
-:--: | -- | --
-ga | git add | Adiciona un archivo en seguimiento al área *Stage* de Git.
-gaa | git add --all | Adiciona todos los archivos en seguimiento al área *Stage* de Git.
-gb | git branch | Muestras las ramas creadas.
-gcmsg | git commit -m | Realiza la confirmación con un mensaje.
-gco | git checkout | Cambiar de rama.
-ggl | git pull origin $(rama_actual)| Realiza la extracción del remoto origin configurado, en la rama de trabajo actual.
-ggp | git push origin $(rama_actual)| Realiza el empuje del remoto origin configurado, en la rama de trabajo actual.
-glo | git log --oneline --decorate | Muestra todas las confirmaciones.
-gra | git remote add | Adicionar un repositorio remoto.
-grv | git remote -v | Muestra los repositorios remotos configurados.
-gst | git status | Muestra el estado del repositorio iniciado.
-gss | git status -s | Muestra resumido del estado del repositorio.
+### Instalación
 
-Consulte a continuación la [documentación](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git) para mayor información.
+#### Opción 1: Con CURL (Recomendado)
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
-#### <ins>Colored-man-pages plugin</ins>
-Este plugin también ya se encuentra en el paquete de instalación de **oh-my-zsh**. Nos permite agregar colores de mostrado a las salidas del comando linux ***man***, que es para desplegar documentación de dicho comando.
+#### Opción 2: Con WGET
+```bash
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
-Para usarlo, agregue la palabra **colored-man-pages** a la matriz de plugins del archivo zshrc.
+**La instalación:**
+- Hace copia de seguridad de tu `.zshrc` actual (lo renombra a `.zshrc.pre-oh-my-zsh`)
+- Crea un nuevo archivo `.zshrc` con configuración de Oh-My-ZSH
+- Configura ZSH como shell por defecto automáticamente
+- Instala el tema por defecto `robbyrussell`
 
+---
+
+## Plugins Disponibles
+
+
+Luego, actualiza la configuración:
+```bash
+source ~/.zshrc
+```
+
+---
+
+### Git Plugin
+
+**Viene incluido en Oh-My-ZSH**. Para usarlo, agregue la palabra git a la matriz de plugins en el archivo zshrc.
+
+**Activar:**
+```zsh
+plugins=(git ...)
+```
+
+| Alias | Comando | Descripción |
+|-------|---------|-------------|
+| `ga` | `git add` | Agregar archivos al stage |
+| `gaa` | `git add --all` | Agregar todos los archivos |
+| `gb` | `git branch` | Listar ramas |
+| `gcmsg` | `git commit -m` | Hacer commit con mensaje |
+| `gco` | `git checkout` | Cambiar de rama |
+| `ggl` | `git pull origin $(rama_actual)` | Pull de la rama actual |
+| `ggp` | `git push origin $(rama_actual)` | Push de la rama actual |
+| `glo` | `git log --oneline --decorate` | Ver historial de commits |
+| `gra` | `git remote add` | Agregar repositorio remoto |
+| `grv` | `git remote -v` | Ver repositorios remotos |
+| `gst` | `git status` | Ver estado del repositorio |
+| `gss` | `git status -s` | Ver estado resumido |
+
+[Documentación completa](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git)
+
+---
+
+---
+
+### Composer Plugin
+
+Aliases y autocompletado para **Composer** (gestor de dependencias PHP).
+
+**Activar:**
 ```zsh
 plugins=(
-	git
-	git-extras
-	colored-man.pages
-	)
+  git
+  composer
+)
 ```
-Consulte a continuación la [documentación](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages) para mayor información.
 
-#### <ins>Composer plugin</ins>
-Este plugin proporciona alias y facilitación de finalización para comandos frecuentes de *composer*.
+| Alias | Comando | Descripción |
+|-------|---------|-------------|
+| `cpp` | `composer create-project` | Crear nuevo proyecto |
+| `ci` | `composer install` | Instalar dependencias |
+| `cr` | `composer require` | Agregar paquete |
+| `cu` | `composer update` | Actualizar dependencias |
 
-Para usarlo, agregue la palabra **composer** a la matriz de plugins en el archivo **zshrc**.
+[Documentación completa](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/composer)
 
+---
+
+### Docker Compose Plugin
+
+Aliases para **Docker Compose**.
+
+**Activar:**
 ```zsh
-	plugins=(
-	git
-	composer
-	...
-	)
+plugins=(
+  docker-compose
+)
 ```
-#### Ejemplos de uso de alias
-Alias | Comando | Descripción
-:--: | -- | --
-cpp | composer create-project | Crea un nuevo proyecto a partir de un paquete existente.
-ci | composer install | Resuelve e instala dependencias de `composer.json`.
-cr | composer require | Agrega nuevos paquetes a `composer.json`
-cu | composer update | Actualiza las dependencias y el archivo `composer.lock`
 
-Consulte a continuación la [documentación](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/composer) para mayor información.
+| Alias | Comando | Descripción |
+|-------|---------|-------------|
+| `dcb` | `docker-compose build` | Construir contenedores |
+| `dce` | `docker-compose exec` | Ejecutar comando en contenedor |
+| `dcr` | `docker-compose run` | Ejecutar comando |
+| `dcstop` | `docker-compose stop` | Detener contenedores |
+| `dcup` | `docker-compose up` | Iniciar servicios |
+| `dcdn` | `docker-compose down` | Detener y remover |
+| `dcstart` | `docker-compose start` | Iniciar contenedores |
 
-#### <ins>Docker Compose plugin</ins>
-Este plugin proporciona alias y facilitación de finalización para comandos frecuentes de *docker-compose*.
+[Documentación completa](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose)
 
-Para usarlo, agregue la palabra **docker-compose** en la matriz de plugins en el archivo **zshrc**.
+---
 
+### Laravel Sail Plugin
+
+Plugin para facilitarinteracción con **Laravel Sail**.
+
+**Instalación:**
+```bash
+git clone https://github.com/ariaieboy/laravel-sail \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/laravel-sail
+```
+
+**Activar:**
 ```zsh
-	plugins=(
-	...
-	...
-	docker-compose
-	)
+plugins=(laravel-sail)
 ```
-##### Ejemplos de uso de alias
-Alias | Comando | Descripción
-:--: | -- | --
-dcb | docker-compose build | Construir contenedores.
-dce | docker-compose exec | Ejecutar comando dentro de un contenedor.
-dcr | docker-compose run | Ejecutar un comando en el contenedor.
-dcstop | docker-compose stop | Detener un contenedor
-dcup | docker-compose up | Cree, (re)cree, inicie y adjunte a contenedores para un servicio.
-dcdn | docker-compose down | Detener y retirar contenedores.
-dcstart | docker-compose start | Iniciar un contenedor
 
-Consulte a continuación la [documentación](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose) para mayor información.
+| Alias | Comando | Descripción |
+|-------|---------|-------------|
+| `s` | `sail` | Ejecutar sail |
+| `sup` | `sail up` | Iniciar servicios |
+| `sud` | `sail up -d` | Iniciar en segundo plano |
+| `sdown` | `sail down` | Detener servicios |
+| `sb` | `sail build` | Construir imagen |
+| `sa` | `sail artisan` | Ejecutar artisan |
+| `sp` | `sail php` | Ejecutar PHP |
+| `sc` | `sail composer` | Ejecutar composer |
+| `sn` | `sail npm` | Ejecutar npm |
 
-#### <ins>Laravel Sail plugin</ins>
-##### Instalación
+[Documentación completa](https://github.com/ariaieboy/laravel-sail)
 
-`git clone https://github.com/ariaieboy/laravel-sail ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/laravel-sail`
+---
 
-##### Uso General
-Alias | Descripción
-:--: | --
-s | sail
-sup | sail up
-sud | sail up -d
-sdown | sail down
-sb | sail build
+### zsh-Syntax-Highlighting Plugin
 
-##### Comandos Artesan y Dependencias
-Alias | Descripción
-:--: | --
-sa | sail artisan
-sp | sail php
-sc | sail composer
-sn | sail npm
+Resalta comandos mientras escribes. **Altamente recomendado**.
 
-Consulte a continuación la [documentación](https://github.com/ariaieboy/laravel-sail) para mayor información.
+**Colores:**
+- Verde: comando válido
+- Rojo: comando no válido
+- Azul: ruta válida
 
+**Instalación:**
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
 
-#### <ins>zsh-syntax-highlighting  plugin</ins>
-Proporciona resalta de color a nuestros comando linux ejecutados en nuestra terminal, bash o zsh. 
-
-Para usarlo, agregue la siguiente palabra **zsh-syntax-hihlighting** en el archivo **zshrc**.
-
+**Activar:**
 ```zsh
-	plugins=(...
-	...
-	zsh-syntax-highlighting
-	)
+plugins=(zsh-syntax-highlighting)
 ```
 
-#### <ins>zsh-autosuggestions plugin</ins>
-Proporcion sugerencia de comandos, a partir de un historial de comandos proporcionados a la terminal. 
+> Tip: Debe ser el último plugin en la lista para funcionar correctamente.
 
-Para usarlo, agregue la siguiente palabra **zsh-autosuggestions** en el archivo **zshrc**.
+---
 
+### zsh-Autosuggestions Plugin
+
+Sugiere comandos basados en tu historial mientras escribes. **Altamente recomendado**.
+
+**Instalación:**
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+**Activar:**
 ```zsh
-	plugins=(...
-	...
-	zsh-autosuggestions
-	)
+plugins=(zsh-autosuggestions)
 ```
 
-### Actualizando nuestro directorio oh-my-zsh.sh
-Para que surja efecto todos los plugins agregados debemos ejecutar el siguiente comando:
+**Uso:**
+- Aparecen sugerencias en gris mientras escribes
+- Presiona `→` (flecha derecha) para aceptar la sugerencia completa
+- Presiona `Ctrl + →` para aceptar una palabra de la sugerencia
+- Presiona `Esc` para ignorar la sugerencia
 
-`source $ZSH/oh-my-zsh.sh`
+---
 
-## Temas oh-my-zsh
-También se puede agregar temas de configuración de bash, el más conocido en este caso **powerlevel10k** que se lo puede instalar de la siguiente manera:
+## Temas
 
-`git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
+### Powerlevel10k
 
-Luego, editamos nuestro archivo **.zshrc**, para configurar el tema.
+**Powerlevel10k** es el tema más popular. Ofrece un prompt hermoso y personalizable.
 
-`vi ~/.zshrc`
+**Instalación:**
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
 
-En este archivo cambiamos la siguiente línea:
+**Configurar en `~/.zshrc`:**
+```zsh
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
 
-`+  ZSH_THEME="powerlevel10k/powerlevel10k"`
+**Personalizar:**
+```bash
+p10k configure
+```
 
-Y por último ejecutamos, el siguiente comando en la terminal, el cuál aparecerá un tipo test para configurar variables de configuración de nuestro bash *zsh* , como ser tipo de codificación, rango de colores soportados, etc.
+Esto abrirá un asistente interactivo para configurar la apariencia del prompt.
+[Documentación completa](https://github.com/romkatv/powerlevel10k)
 
-`p10k configure`
 
 
-Consulte a continuación la [documentación](https://github.com/romkatv/powerlevel10k) para mayor información.
+### Comandos útiles de Oh-My-ZSH:
 
+**Actualizar Oh-My-ZSH:**
+```bash
+omz update
+# o 
+upgrade_oh_my_zsh
+```
+
+**Reiniciar ZSH completamente:**
+```bash
+exec zsh
+```
+
+**Desinstalar Oh-My-ZSH:**
+```bash
+uninstall_oh_my_zsh
+```
+
+### Atajos de teclado útiles:
+
+**Navegación:**
+- `Ctrl + A` - Ir al inicio de la línea
+- `Ctrl + E` - Ir al final de la línea
+- `Ctrl + U` - Borrar desde el cursor al inicio
+- `Ctrl + K` - Borrar desde el cursor al final
+- `Ctrl + W` - Borrar palabra anterior
+- `Alt + B` - Retroceder una palabra
+- `Alt + F` - Avanzar una palabra
+
+**Historial:**
+- `Ctrl + R` - Buscar en historial (reverse search)
+- `Ctrl + P` o `↑` - Comando anterior
+- `Ctrl + N` o `↓` - Comando siguiente
+- `!!` - Ejecutar último comando
+- `!$` - Último argumento del comando anterior
