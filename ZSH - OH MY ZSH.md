@@ -324,21 +324,3 @@ exec zsh
 ```bash
 uninstall_oh_my_zsh
 ```
-
-### Atajos de teclado útiles:
-
-**Navegación:**
-- `Ctrl + A` - Ir al inicio de la línea
-- `Ctrl + E` - Ir al final de la línea
-- `Ctrl + U` - Borrar desde el cursor al inicio
-- `Ctrl + K` - Borrar desde el cursor al final
-- `Ctrl + W` - Borrar palabra anterior
-- `Alt + B` - Retroceder una palabra
-- `Alt + F` - Avanzar una palabra
-
-**Historial:**
-- `Ctrl + R` - Buscar en historial (reverse search)
-- `Ctrl + P` o `↑` - Comando anterior
-- `Ctrl + N` o `↓` - Comando siguiente
-- `!!` - Ejecutar último comando
-- `!$` - Último argumento del comando anterior
