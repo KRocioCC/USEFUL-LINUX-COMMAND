@@ -79,30 +79,7 @@ Permite ejecutar comandos como guardar, salir, buscar y reemplazar.
 * `:q!` - Salir sin guardar cambios (forzar salida)
 * `:w` - Guardar (write)
 * `:wq` o `:x` - Guardar y salir
-* `:w archivo.txt` - Guardar como
-* `:e archivo.txt` - Abrir otro archivo (edit)
 
-#### Configuración:
-* `:set number` - Mostrar números de línea
-* `:set nonumber` - Ocultar números de línea
-* `:syntax on` - Activar resaltado de sintaxis
-* `:syntax off` - Desactivar resaltado de sintaxis
-
-#### Búsqueda y reemplazo:
-* `:%s/viejo/nuevo/g` - Reemplacopiar, cortar o realizar operaciones.
-
-**Cómo entrar desde Modo Normal:**
-* `v` - Modo visual carácter por carácter
-* `V` - Modo visual línea por línea (selecciona líneas completas)
-* `Ctrl + v` - Modo visual en bloque (selección rectangular)
-
-**Operaciones en selección:**
-* `y` - Copiar (yank) la selección
-* `d` - Cortar (delete) la selección
-* `p` - Pegar después del cursor
-* `P` - Pegar antes del cursor
-
-**Cómo salir:** Presiona `ESC` para volver al Modo Normal.
 
 ---
 

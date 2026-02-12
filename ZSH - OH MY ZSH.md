@@ -15,7 +15,7 @@
 
 ## ZSH
 
-**ZSH** (Z shell) es una versión mejorada de **Bash**, ofreciendo más funcionalidades y personalización.
+**ZSH** Es un intérprete de comandos, es una versión mejorada de **Bash**, ofreciendo más funcionalidades y personalización.
 
 ### Ventajas principales:
 - Mayor eficiencia y velocidad
@@ -70,11 +70,46 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-**La instalación:**
-- Hace copia de seguridad de tu `.zshrc` actual (lo renombra a `.zshrc.pre-oh-my-zsh`)
-- Crea un nuevo archivo `.zshrc` con configuración de Oh-My-ZSH
-- Configura ZSH como shell por defecto automáticamente
-- Instala el tema por defecto `robbyrussell`
+**Durante la instalación, se ejecutan automáticamente los siguientes pasos:**
+
+1. **Backup de tu configuración actual:**
+   ```bash
+   # Copia de seguridad: .zshrc → .zshrc.pre-oh-my-zsh
+   cp ~/.zshrc ~/.zshrc.pre-oh-my-zsh
+   ```
+   Tu archivo `.zshrc` anterior se guarda como `.zshrc.pre-oh-my-zsh` para poder revertir si es necesario.
+
+2. **Crear nuevo archivo `.zshrc` con configuración de Oh-My-ZSH:**
+   ```bash
+   # Descarga y copia el repositorio original
+   git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+
+   # Gwnera el nuevo .zshrc desde la plantilla
+   cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+   ```
+   Ahora tendras un `.zshrc` completamente nuevo optimizado para Oh-My-ZSH.
+
+3. **Configurar ZSH como shell por defecto:**
+   ```bash
+   chsh -s $(which zsh)
+   ```
+   Tu próxima sesión de terminal usará automáticamente ZSH.
+
+4. **Instalar el tema por defecto `robbyrussell`:**
+   ```bash
+   # Se activa automáticamente editando ~/.zshrc:
+   # ZSH_THEME="robbyrussell"
+   ```
+   Verifica que en tu `~/.zshrc` aparezca esta línea (debe estar por defecto):
+   ```bash
+   grep "ZSH_THEME" ~/.zshrc
+   ```
+
+**Después de la instalación, recarga la configuración:**
+```bash
+source ~/.zshrc
+# o simplemente reinicia la terminal
+```
 
 ---
 
